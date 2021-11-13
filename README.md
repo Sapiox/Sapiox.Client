@@ -10,7 +10,7 @@
 the project is in development it is not yet possible to install modes.
 
 ## Credits
-* The VT-Team :
+The VT-Team :
 ### Warkis ([warquys@GitHub](https://github.com/warquys))
 - The New Project Leader
 - VT-Team Leader
@@ -19,7 +19,7 @@ the project is in development it is not yet possible to install modes.
 ### Nimport
 - Client Devloper
 
-* The orignale coder of the Synapse Team form the [Clien Loader](https://github.com/SynapseSL/Client) and the credit of this project :
+The orignale coder of the Synapse Team form the [Clien Loader](https://github.com/SynapseSL/Client) and the credit of this project :
 ### Helight ([helightdev@GitHub](https://github.com/helightdev))
 - Project Lead(Client)
 - Anomalous Coders Lead
