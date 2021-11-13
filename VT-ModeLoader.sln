@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31808.319
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VT-ModeLoader", "VT-ModeLoader\VT-ModeLoader.csproj", "{FD54BD18-9ED0-4C71-AAF3-74F86489BB11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD54BD18-9ED0-4C71-AAF3-74F86489BB11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD54BD18-9ED0-4C71-AAF3-74F86489BB11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD54BD18-9ED0-4C71-AAF3-74F86489BB11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD54BD18-9ED0-4C71-AAF3-74F86489BB11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3DE33B8B-F457-49D5-8FD3-632E63822980}
+	EndGlobalSection
+EndGlobal
