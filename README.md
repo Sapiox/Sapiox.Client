@@ -1,10 +1,12 @@
 ## Installation
 1. [Install BepInEx IL2CPP 64](https://builds.bepis.io/projects/bepinex_be).
 2. [Follow the instructions](https://docs.bepinex.dev/master/articles/user_guide/installation/unity_il2cpp.html).
-3. Replace the exe of scp sl by this of the last releases
+3. Replace the exe of scp sl by this of the last releases and it is necessary to delete the SL-AC.dll file.
 3. Place the dll of the last releases in your plugin directory of BepInEx.
 4. Start your client.
-5. Open the console and do BuildInfo if the client said it is modded then you have correctly installed
+5. Open the console and do BuildInfo if the client said it is modded then you have correctly installed.
+
+I advise to do this on a copy of the game and to keep an unmodified example because it is no longer possible to play on the vanilla servers after the modification.
 
 ## Install Mods :
 the project is in development it is not yet possible to install modes.
