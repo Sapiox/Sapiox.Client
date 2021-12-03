@@ -10,9 +10,9 @@ using UnityEngine.UI;
 
 namespace SapioxClient.Events.Patches
 {
-    [HarmonyPatch(typeof(NewMainMenu), nameof(NewMainMenu.Start))]
-    internal static class MainMenuStart
+    internal static class MainMenu
     {
+        [HarmonyPatch(typeof(NewMainMenu), nameof(NewMainMenu.Start))]
         [HarmonyPrefix]
         public static bool OnMainMenuStart()
         {
@@ -29,7 +29,7 @@ namespace SapioxClient.Events.Patches
             }
             catch (Exception e)
             {
-                SapioxManager.log.LogError($"{typeof(MainMenuStart).FullName}.{nameof(OnMainMenuStart)}:\n{e}");
+                SapioxManager.log.LogError($"{typeof(MainMenu).FullName}.{nameof(OnMainMenuStart)}:\n{e}");
                 return true;
             }
         }

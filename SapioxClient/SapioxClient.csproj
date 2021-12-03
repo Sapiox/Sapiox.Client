@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="API\Config.cs" />
-    <Compile Include="API\DataUtils.cs" />
     <Compile Include="API\IConfig.cs" />
     <Compile Include="API\Log.cs" />
     <Compile Include="API\Plugin.cs" />
@@ -40,11 +39,9 @@
     <Compile Include="Events\Handlers\Client.cs" />
     <Compile Include="Events\Handlers\Round.cs" />
     <Compile Include="Events\Patches\CentralAuth.cs" />
-    <Compile Include="Events\Patches\MainMenuStart.cs" />
+    <Compile Include="Events\Patches\MainMenu.cs" />
     <Compile Include="Events\Patches\News.cs" />
-    <Compile Include="Events\Patches\PipelinePatches.cs" />
-    <Compile Include="Events\Patches\RoundStart.cs" />
-    <Compile Include="Events\Patches\ServerListAwake.cs" />
+    <Compile Include="Events\Patches\ServerList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SapioxManager.cs" />
   </ItemGroup>

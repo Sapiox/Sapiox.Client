@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SapioxClient.Events.Patches
 {
-    [HarmonyPatch(typeof(NewsLoader), nameof(NewsLoader.Start))]
     internal static class News
     {
+        [HarmonyPatch(typeof(NewsLoader), nameof(NewsLoader.Start))]
         [HarmonyPrefix]
         public static bool OnRequest(NewsLoader __instance)
         {

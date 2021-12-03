@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SapioxClient.Events.Patches
 {
-    [HarmonyPatch(typeof(NewServerBrowser), nameof(NewServerBrowser.DownloadList))]
-    internal static class ServerListAwake
+    internal static class ServerList
     {
+        [HarmonyPatch(typeof(NewServerBrowser), nameof(NewServerBrowser.DownloadList))]
         [HarmonyPrefix]
         public static bool OnServerListAwake()
         {

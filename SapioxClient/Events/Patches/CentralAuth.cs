@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace SapioxClient.Events.Patches
 {
     [HarmonyPatch(typeof(CentralAuthManager), nameof(CentralAuthManager.Sign))]
-    internal static class Sing
+    internal static class CentralAuth
     {
         [HarmonyPrefix]
         public static bool OnSing(ref string __result, string ticket)
@@ -26,11 +26,8 @@ namespace SapioxClient.Events.Patches
                 return false;
             }
         }
-    }
 
-    [HarmonyPatch(typeof(CentralAuthManager), nameof(CentralAuthManager.Authentication))]
-    internal static class Auth
-    {
+        [HarmonyPatch(typeof(CentralAuthManager), nameof(CentralAuthManager.Authentication))]
         [HarmonyPrefix]
         public static bool OnAuth()
         {

@@ -12,6 +12,7 @@ using RemoteAdmin;
 using BepInEx.IL2CPP;
 using BepInEx.Logging;
 using BepInEx;
+using SapioxClient.Events.Patches;
 
 namespace SapioxClient
 {
@@ -22,7 +23,7 @@ namespace SapioxClient
         public const int ClientMinor = 0;
         public const int ClientPatch = 0;
         public const string ClientVersion = "1.0.0-Beta";
-        public const string ClientDescription = "The client is a modificated version of the SCP:SL client for support mods";
+        public const string ClientDescription = "Modded scpsl client";
 
 
         public static ManualLogSource log;
@@ -69,12 +70,23 @@ namespace SapioxClient
             private set => _configDirectory = value;
         }
 
+        public List<Type> TypesToPatch { get; } = new List<Type>
+        {
+            typeof(Events.Patches.CentralAuth),
+            typeof(MainMenu),
+            typeof(News),
+            typeof(Events.Patches.ServerList)
+        };
+
         public void PatchMethods()
         {
             try
             {
                 var instance = new Harmony("Sapiox.patches");
-                instance.PatchAll();
+
+                foreach (var type in TypesToPatch)
+                instance.PatchAll(type);
+
                 Log.LogInfo("Harmony Patching was sucessfully!");
             }
             catch (Exception e)
@@ -103,7 +115,6 @@ namespace SapioxClient
             {
                 PatchMethods();
                 ActivatePlugins();
-                //Server.RegisterRemoteAdminCommand(new Commands.Plugins());
                 IsLoaded = true;
             }
             catch (Exception e)
