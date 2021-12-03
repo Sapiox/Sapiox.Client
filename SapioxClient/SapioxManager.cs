@@ -22,7 +22,7 @@ namespace SapioxClient
         public const int ClientMinor = 0;
         public const int ClientPatch = 0;
         public const string ClientVersion = "1.0.0-Beta";
-        public const string ClientDescription = "The client is a modificated version of the SCP:SL client for support mods";
+        public const string ClientDescription = "Modded scpsl client";
 
 
         public static ManualLogSource log;
