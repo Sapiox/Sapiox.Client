@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SapioxClient.Events.Patches
 {
-    internal static class News
+    public class News
     {
         [HarmonyPatch(typeof(NewsLoader), nameof(NewsLoader.Start))]
         [HarmonyPrefix]

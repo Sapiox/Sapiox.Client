@@ -13,6 +13,8 @@ using BepInEx.IL2CPP;
 using BepInEx.Logging;
 using BepInEx;
 using SapioxClient.Events.Patches;
+using SapioxClient.Components;
+using SapioxClient.Events.Handlers;
 
 namespace SapioxClient
 {
@@ -22,9 +24,7 @@ namespace SapioxClient
         public const int ClientMajor = 1;
         public const int ClientMinor = 0;
         public const int ClientPatch = 0;
-        public const string ClientVersion = "1.0.0-Beta";
-        public const string ClientDescription = "Modded scpsl client";
-
+        public static string ClientDescription = "Modded scpsl client";
 
         public static ManualLogSource log;
 
@@ -32,7 +32,15 @@ namespace SapioxClient
         private static string _sapioxDirectory;
         private static string _pluginDirectory;
         private static string _configDirectory;
+        private static string _sapioxVersion = "1.0.0-Beta";
+
         public static List<IPlugin> Plugins = new List<IPlugin>();
+
+        public static string SapioxVersion
+        {
+            get => _sapioxVersion;
+            private set => _sapioxVersion = value;
+        }
 
         public static string SapioxDirectory
         {
@@ -75,7 +83,12 @@ namespace SapioxClient
             typeof(Events.Patches.CentralAuth),
             typeof(MainMenu),
             typeof(News),
-            typeof(Events.Patches.ServerList)
+            typeof(Events.Patches.Credits),
+            typeof(Events.Patches.ServerList),
+            typeof(GlobalPermissions),
+            typeof(PipelinePatches),
+            typeof(SmallPatches),
+            typeof(CommandLine)
         };
 
         public void PatchMethods()
@@ -113,7 +126,9 @@ namespace SapioxClient
 
             try
             {
+                ComponentHandler.RegisterTypes();
                 PatchMethods();
+                EventHandlers.RegisterEvents();
                 ActivatePlugins();
                 IsLoaded = true;
             }
