@@ -76,15 +76,15 @@ namespace SapioxClient
 
         public List<Type> TypesToPatch { get; } = new List<Type>
         {
-            typeof(Events.Patches.CentralAuth)
-            //typeof(MainMenu),
-            //typeof(News),
-            //typeof(Events.Patches.Credits),
-            //typeof(Events.Patches.ServerList),
-            //typeof(GlobalPermissions),
-            //typeof(PipelinePatches),
-            //typeof(SmallPatches),
-            //typeof(CommandLine)
+            typeof(Events.Patches.CentralAuth),
+            typeof(MainMenu),
+            typeof(News),
+            typeof(Events.Patches.Credits),
+            typeof(Events.Patches.ServerList),
+            typeof(GlobalPermissions),
+            typeof(PipelinePatches),
+            typeof(SmallPatches),
+            typeof(CommandLine)
         };
 
         private void PatchMethods()
@@ -106,6 +106,8 @@ namespace SapioxClient
         public override void OnApplicationStart()
         {
             if (IsLoaded) return;
+
+            log = LoggerInstance;
 
             CustomNetworkManager.Modded = true;
             BuildInfoCommand.ModDescription = string.Join(
