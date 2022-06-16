@@ -9,24 +9,19 @@ using SapioxClient.API;
 using HarmonyLib;
 using CommandSystem;
 using RemoteAdmin;
-using BepInEx.IL2CPP;
-using BepInEx.Logging;
-using BepInEx;
 using SapioxClient.Events.Patches;
 using SapioxClient.Components;
 using SapioxClient.Events.Handlers;
+using MelonLoader;
 
 namespace SapioxClient
 {
-    [BepInPlugin("Sapiox", "SapioxClient", "1.0.0")]
-    public class SapioxManager : BasePlugin
+    public class SapioxManager : MelonMod
     {
         public const int ClientMajor = 1;
         public const int ClientMinor = 0;
         public const int ClientPatch = 0;
         public static string ClientDescription = "Modded scpsl client";
-
-        public static ManualLogSource log;
 
         public static bool IsLoaded = false;
         private static string _sapioxDirectory;
@@ -35,6 +30,7 @@ namespace SapioxClient
         private static string _sapioxVersion = "1.0.0-Beta";
 
         public static List<IPlugin> Plugins = new List<IPlugin>();
+        public static MelonLogger.Instance log;
 
         public static string SapioxVersion
         {
@@ -80,35 +76,34 @@ namespace SapioxClient
 
         public List<Type> TypesToPatch { get; } = new List<Type>
         {
-            typeof(Events.Patches.CentralAuth),
-            typeof(MainMenu),
-            typeof(News),
-            typeof(Events.Patches.Credits),
-            typeof(Events.Patches.ServerList),
-            typeof(GlobalPermissions),
-            typeof(PipelinePatches),
-            typeof(SmallPatches),
-            typeof(CommandLine)
+            typeof(Events.Patches.CentralAuth)
+            //typeof(MainMenu),
+            //typeof(News),
+            //typeof(Events.Patches.Credits),
+            //typeof(Events.Patches.ServerList),
+            //typeof(GlobalPermissions),
+            //typeof(PipelinePatches),
+            //typeof(SmallPatches),
+            //typeof(CommandLine)
         };
 
-        public void PatchMethods()
+        private void PatchMethods()
         {
             try
             {
-                var instance = new Harmony("Sapiox.patches");
+                var instance = new HarmonyLib.Harmony("Sapiox.patches");
 
                 foreach (var type in TypesToPatch)
                 instance.PatchAll(type);
-
-                Log.LogInfo("Harmony Patching was sucessfully!");
+                LoggerInstance.Msg("Harmony Patching was sucessfully!");
             }
             catch (Exception e)
             {
-                Log.LogError($"Harmony Patching threw an error:\n\n {e}");
+                LoggerInstance.Error($"Harmony Patching threw an error:\n\n {e}");
             }
         }
 
-        public override void Load()
+        public override void OnApplicationStart()
         {
             if (IsLoaded) return;
 
@@ -117,12 +112,11 @@ namespace SapioxClient
                 "\n",
                 AppDomain.CurrentDomain.GetAssemblies().Select(a => $"{a.GetName().Name} - Version {a.GetName().Version.ToString(3)}"));
 
-            log = Log;
-
             var localpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sapiox", "Client");
             SapioxDirectory = Directory.Exists(localpath) ? localpath : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Sapiox", "Client");
             ConfigDirectory = Path.Combine(SapioxDirectory, "configs");
             PluginDirectory = Path.Combine(SapioxDirectory, "plugins");
+
 
             try
             {
@@ -134,11 +128,13 @@ namespace SapioxClient
             }
             catch (Exception e)
             {
-                Log.LogError($"Sapiox.Loader: Error:\n{e}");
+                LoggerInstance.Error($"Sapiox.Loader: Error:\n{e}");
                 return;
             }
 
-            Log.LogInfo("Sapiox.Loader: Sapiox is now Loaded!");
+            LoggerInstance.Msg("Sapiox.Loader: Sapiox is now Loaded!");
+
+            IsLoaded = true;
         }
 
         public void ActivatePlugins()
@@ -172,7 +168,7 @@ namespace SapioxClient
                 }
                 catch (Exception e)
                 {
-                    Log.LogError($"Sapiox.Loader: Loading Assembly of {pluginpath} failed!\n{e}");
+                    LoggerInstance.Error($"Sapiox.Loader: Loading Assembly of {pluginpath} failed!\n{e}");
                 }
             }
 
@@ -187,7 +183,7 @@ namespace SapioxClient
                 }
                 catch (Exception e)
                 {
-                    Log.LogError($"Sapiox.Loader: {infoTypePair.Value.Key.Assembly.GetName().Name} could not be activated!\n{e}");
+                    LoggerInstance.Error($"Sapiox.Loader: {infoTypePair.Value.Key.Assembly.GetName().Name} could not be activated!\n{e}");
                 }
             }
             LoadPlugins();
@@ -208,7 +204,7 @@ namespace SapioxClient
                 }
                 catch (Exception e)
                 {
-                    Log.LogError($"Sapiox.Loader: {plugin.Info.Name} Loading failed!\n{e}");
+                    LoggerInstance.Error($"Sapiox.Loader: {plugin.Info.Name} Loading failed!\n{e}");
                 }
             }
         }

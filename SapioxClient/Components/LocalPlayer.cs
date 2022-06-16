@@ -1,10 +1,13 @@
-﻿using MelonLoader.Support;
+﻿using MelonLoader;
+using MelonLoader.Support;
 using SapioxClient.API;
 using System;
 using UnityEngine;
 
 namespace SapioxClient.Components
 {
+
+    [RegisterTypeInIl2Cpp]
     public class LocalPlayer : MonoBehaviour
     {
         public static LocalPlayer Singleton;
@@ -65,7 +68,7 @@ namespace SapioxClient.Components
                 _lookingAt = hit.transform.gameObject;
                 if (_lookingAt.GetInstanceID() != lastInvalidTraceId)
                 {
-                    var receiver = _lookingAt.GetComponent<LookReceiver>();
+                    /*var receiver = _lookingAt.GetComponent<LookReceiver>();
                     if (receiver == null)
                     {
                         lastInvalidTraceId = _lookingAt.GetInstanceID();
@@ -73,7 +76,7 @@ namespace SapioxClient.Components
                     else
                     {
                         receiver.LookReceiveAction.Invoke(hit.point);
-                    }
+                    }*/ 
                 }
             }
         }

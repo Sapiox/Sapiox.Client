@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MelonLoader;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,8 @@ using UnityEngine;
 
 namespace SapioxClient.Components
 {
+
+    [RegisterTypeInIl2Cpp]
     public class SapioxSpawned : MonoBehaviour
     {
         public SapioxSpawned(IntPtr intPtr) : base(intPtr) { }

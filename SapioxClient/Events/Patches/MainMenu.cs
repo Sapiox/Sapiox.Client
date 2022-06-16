@@ -20,7 +20,7 @@ namespace SapioxClient.Events.Patches
         {
             try
             {
-                SapioxManager.log.LogInfo("Main Menu hooked!");
+                SapioxManager.log.Msg("Main Menu hooked!");
                 var obj = new GameObject();
                 obj.AddComponent<SapioxMenuWorker>();
                 //var texture = new Texture2D(256, 256);
@@ -42,7 +42,7 @@ namespace SapioxClient.Events.Patches
             }
             catch (Exception e)
             {
-                SapioxManager.log.LogError($"{typeof(MainMenu).FullName}.{nameof(OnMainMenuStart)}:\n{e}");
+                SapioxManager.log.Error($"{typeof(MainMenu).FullName}.{nameof(OnMainMenuStart)}:\n{e}");
                 return true;
             }
         }

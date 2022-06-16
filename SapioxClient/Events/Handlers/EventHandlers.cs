@@ -18,14 +18,15 @@ namespace SapioxClient.Events.Handlers
         public static void RegisterEvents()
         {
             ClientPipeline.DataReceivedEvent += MainReceivePipelineData;
-            SapioxClient.Events.Handlers.Client.CreateCredits += OnCreateCredits;
+        //    SapioxClient.Events.Handlers.Client.CreateCredits += OnCreateCredits;
         }
 
-        public static void OnCreateCredits(CreditsHook ev)
+        /*public static void OnCreateCredits(CreditsHook ev)
         {
             ev.CreateCreditsCategory("Sapiox");
             ev.CreateCreditsEntry("Nakuliv", "Sapiox Developer", "Sapiox", CreditColors.Blue200);
-        }
+            ev.CreateCreditsEntry("Lizard Wizard", "top 10 graczy", "Numer 1", CreditColors.Blue200);
+        }*/
 
         public static void MainReceivePipelineData(PipelinePacket packet)
         {

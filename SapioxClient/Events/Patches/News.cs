@@ -23,7 +23,7 @@ namespace SapioxClient.Events.Patches
             }
             catch(Exception e)
             {
-                SapioxManager.log.LogError($"{typeof(News).FullName}.{nameof(OnRequest)}:\n{e}");
+                SapioxManager.log.Error($"{typeof(News).FullName}.{nameof(OnRequest)}:\n{e}");
                 return false;
             }
         }

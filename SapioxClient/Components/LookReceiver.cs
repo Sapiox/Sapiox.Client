@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using UnityEngine;
 
 namespace SapioxClient.Components
@@ -9,4 +9,4 @@ namespace SapioxClient.Components
 
         public Action<Vector3> LookReceiveAction { get; set; } = delegate { };
     }
-}
+}*/

@@ -20,7 +20,7 @@ namespace SapioxClient.Events.Patches
             {
                 name = "Credits Hook"
             };
-            creditsHookObject.AddComponent<CreditsHook>();
+            //creditsHookObject.AddComponent<CreditsHook>();
 
             return true;
         }

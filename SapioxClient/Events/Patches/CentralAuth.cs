@@ -132,13 +132,13 @@ namespace SapioxClient.Events.Patches
         {
             try
             {
-                SapioxManager.log.LogInfo($"Trying to sign: {ticket}");
+                SapioxManager.log.Msg($"Trying to sign: {ticket}");
                 __result = "";
                 return false;
             }
             catch (Exception e)
             {
-                SapioxManager.log.LogError($"{typeof(CentralAuth).FullName}.{nameof(OnSing)}:\n{e}");
+                SapioxManager.log.Msg($"{typeof(CentralAuth).FullName}.{nameof(OnSing)}:\n{e}");
                 return false;
             }
         }

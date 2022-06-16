@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*ing System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -244,4 +244,4 @@ namespace SapioxClient.Components
         public static readonly Color Magenta200 = new Color(0.5176f, 0.1137f, 0.702f, 1);
         public static readonly Color Magenta300 = new Color(0.6588f, 0.1216f, 0.7137f, 1);
     }
-}
+}*/

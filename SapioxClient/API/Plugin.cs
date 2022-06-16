@@ -28,7 +28,7 @@ namespace SapioxClient.API
         {
             if(!config.Load) return;
             Config.Load();
-            SapioxManager.log.LogInfo($"{Info.Name} by {Info.Author} has been enabled!");
+            SapioxManager.log.Msg($"{Info.Name} by {Info.Author} has been enabled!");
         }
 
         public string PluginDirectory

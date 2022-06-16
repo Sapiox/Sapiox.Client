@@ -1,4 +1,5 @@
-﻿using MelonLoader.Support;
+﻿using MelonLoader;
+using MelonLoader.Support;
 using SapioxClient.API;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ using UnityEngine;
 
 namespace SapioxClient.Components
 {
+
+    [RegisterTypeInIl2Cpp]
     public class SapioxMenuWorker : MonoBehaviour
     {
         public SapioxMenuWorker(IntPtr intPtr) : base(intPtr) { }
