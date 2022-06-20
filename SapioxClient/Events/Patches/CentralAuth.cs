@@ -133,7 +133,8 @@ namespace SapioxClient.Events.Patches
             try
             {
                 SapioxManager.log.Msg($"Trying to sign: {ticket}");
-                __result = "";
+                CentralAuthManager.Authenticated = true;
+                __result = "TICKET";
                 return false;
             }
             catch (Exception e)

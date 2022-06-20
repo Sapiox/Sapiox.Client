@@ -51,7 +51,7 @@
     <Reference Include="Mirror, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="mscorlib" />
     <Reference Include="SapioxClient">
-      <HintPath>..\SapioxClient\bin\Debug\SapioxClient.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory\Mods\FMods\SapioxClient.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
