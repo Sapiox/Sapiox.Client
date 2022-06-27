@@ -4,7 +4,7 @@ namespace SapioxClient.Example
 {
     [PluginInfo(
         Author = "Naku",
-        Name = "CwanStars-Mod",
+        Name = "Sapiox-ExampleMod",
         Description = "Example client plugin",
         Version = "1.0.0"
         )]
