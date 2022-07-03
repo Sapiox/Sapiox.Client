@@ -13,6 +13,8 @@ using SapioxClient.Events.Patches;
 using SapioxClient.Components;
 using SapioxClient.Events.Handlers;
 using MelonLoader;
+using UnityEngine;
+using UnityEngine.Video;
 
 namespace SapioxClient
 {
@@ -80,11 +82,11 @@ namespace SapioxClient
             typeof(MainMenu),
             typeof(News),
             typeof(Events.Patches.Credits),
-            typeof(Events.Patches.ServerList),
+            //typeof(Events.Patches.ServerList),
             typeof(GlobalPermissions),
-            typeof(PipelinePatches),
+            //typeof(PipelinePatches),
             typeof(SmallPatches),
-            typeof(CommandLine)
+            //typeof(CommandLine)
         };
 
         private void PatchMethods()
@@ -100,6 +102,31 @@ namespace SapioxClient
             catch (Exception e)
             {
                 LoggerInstance.Error($"Harmony Patching threw an error:\n\n {e}");
+            }
+        }
+
+        public override void OnUpdate()
+        {
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                cube.transform.position = LocalPlayer.Singleton.Raycast().point;
+
+                var videoply = cube.AddComponent<VideoPlayer>();
+                videoply.url = "https://drive.google.com/uc?id=1AaFL5p4IfdrbopVdbSV0yViI8yc1Ovrm&export=download";
+                videoply.Play();
+            }
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                cube.transform.position = LocalPlayer.Singleton.Raycast().point;
+            }
+
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                LocalPlayer.Singleton.GetComponent<CharacterClassManager>().SetPlayersClass(RoleType.ClassD, LocalPlayer.Singleton.gameObject, CharacterClassManager.SpawnReason.ForceClass);
+                LocalPlayer.Singleton.GetComponent<CharacterClassManager>().CurClass = RoleType.ClassD;
             }
         }
 

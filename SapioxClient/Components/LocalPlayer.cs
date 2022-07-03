@@ -28,16 +28,18 @@ namespace SapioxClient.Components
 
         private GameObject _lookingAt;
 
-        /*public RaycastHit? Raycast()
+        public RaycastHit Raycast()
         {
             var mousePos = Input.mousePosition;
             var ray = Camera.ScreenPointToRay(mousePos);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            Physics.Raycast(ray, out RaycastHit hit);
+            return hit;
+            /*if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 return hit;
             }
-            return null;
-        }*/
+            return null;*/
+        }
 
         public void PlayAudio(AudioClip clip)
         {
@@ -112,7 +114,7 @@ namespace SapioxClient.Components
         private void CompleteAuth()
         {
             var roles = GetComponent<ServerRoles>();
-            roles.CmdServerSignatureComplete("synapse-client-authentication", Events.Patches.CentralAuth.synapseSessionToken, "", false);
+            roles.CmdServerSignatureComplete("Northwood-authentication", "Zabszk@Northwood", "", false);
         }
     }
 }

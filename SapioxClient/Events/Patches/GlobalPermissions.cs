@@ -15,7 +15,7 @@ namespace SapioxClient.Events.Patches
         [HarmonyPrefix]
         public static bool OnUpdate(ServerRoles __instance)
         {
-            if (__instance.CurrentColor == null) return false;
+            /*if (__instance.CurrentColor == null) return false;
 
             if (!string.IsNullOrEmpty(__instance.FixedBadge) && __instance.MyText != __instance.FixedBadge)
             {
@@ -83,19 +83,18 @@ namespace SapioxClient.Events.Patches
                 __instance._prevText = null;
                 PlayerList.UpdatePlayerRole(__instance.gameObject);
                 return false;
-            }
+            }*/
 
-            __instance._prevColor = __instance.MyColor;
-            __instance._prevText = __instance.MyText;
-            __instance._prevBadge = __instance.GlobalBadge;
+            requestBadge.Add(__instance);
+            GlobalBadge(__instance);
             PlayerList.UpdatePlayerRole(__instance.gameObject);
 
-            return false;
+            return true;
         }
 
         private static void GlobalBadge(ServerRoles ply)
         {
-            var su = /*await SynapseCentral.Get.Resolve(ply._hub.characterClassManager.UserId)*/ "Naku@Sapiox";
+            var su = /*await SynapseCentral.Get.Resolve(ply._hub.characterClassManager.UserId)*/ "Zabszk@Northwood";
 
             /*if (su.Groups == null || su.Groups.Count < 1)
             {
@@ -127,15 +126,15 @@ namespace SapioxClient.Events.Patches
                 ply._authorizeBadge = true;
             }*/
 
-            ply.Network_myText = "Sapiox Developer";
-            ply._bgt = "Sapiox Developer";
+            ply.Network_myText = "test";
+            ply._bgt = "test";
 
-            ply.Network_myColor = "purple";
-            ply._bgc = "purple";
+            ply.Network_myColor = "red";
+            ply._bgc = "red";
 
             ply._authorizeBadge = true;
 
-            requestBadge.Remove(ply);
+            //requestBadge.Remove(ply);
         }
     }
 }

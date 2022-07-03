@@ -26,6 +26,7 @@ namespace SapioxClient.Events.Patches
         public static bool OnServerListEnable(NewServerBrowser __instance)
         {
             var filter = __instance.GetComponent<ServerFilter>();
+            GameObject.Find("New Main Menu/Servers/Auth Status").SetActive(false);
             Composite(filter);
             return true;
         }
@@ -38,32 +39,32 @@ namespace SapioxClient.Events.Patches
             {
                 ip = "localhost",
                 port = 7777,
-                players = "2/25",
-                info = "Tm9yZGhvbHouZGU=",
+                players = "0/25",
+                info = Convert.ToBase64String(Encoding.UTF8.GetBytes("Amogusowo")),
                 pastebin = "bcGKt77D",
                 version = "1.0",
                 whitelist = false,
                 modded = true,
                 friendlyFire = true,
-                officialCode = byte.MinValue
+                officialCode = byte.MaxValue
             });
             foreach (var serverEntry in servers)
             {
                 AddServer(filter, serverEntry);
             }
             filter.DisplayServers();
-            try
+            /*try
             {
-                GameObject.Find("New Main Menu/Servers/ServerBrowser/Loading").active = false;
+                GameObject.Find("New Main Menu/Servers/Auth Status").SetActive(false);
             }
-            catch { }
+            catch { }*/
             Log.Info("Servers displayed");
         }
 
         public static void AddServer(ServerFilter filter, ServerEntry entry)
         {
-            var leakingObject = new LeakingObject<ServerListItem>();
-            leakingObject.decorated = new ServerListItem
+            //var leakingObject = new LeakingObject<ServerListItem>();
+            var srv = new ServerListItem
             {
                 ip = (String)entry.ip,
                 port = entry.port,
@@ -76,8 +77,8 @@ namespace SapioxClient.Events.Patches
                 friendlyFire = entry.friendlyFire,
                 officialCode = entry.officialCode
             };
-            filter.FilteredListItems.Add(leakingObject.decorated);
-            leakingObject.Dispose();
+            filter.FilteredListItems.Add(srv);
+            //leakingObject.Dispose();
         }
 
         public class ServerEntry

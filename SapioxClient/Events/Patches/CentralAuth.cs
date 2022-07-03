@@ -23,9 +23,9 @@ namespace SapioxClient.Events.Patches
         private static int injectionStep = 0;
         private static bool hasInjectedByte = false;
         private static string targetAddress = "";
-        public static string synapseSessionToken = "";
+        public static string sapioxSessionToken = "";
 
-        [HarmonyPatch(typeof(NetDataWriter), nameof(NetDataWriter.Put), typeof(byte))]
+        /*[HarmonyPatch(typeof(NetDataWriter), nameof(NetDataWriter.Put), typeof(byte))]
         [HarmonyPrefix]
         public static bool OnNetDataWriterByte(ref byte value)
         {
@@ -51,17 +51,17 @@ namespace SapioxClient.Events.Patches
 
             if (injectionStep == 1)
             {
-                Log.Info("Beginning own Body");
+                SapioxManager.log.Msg("Beginning own Body");
 
-                /*while (!Client.CredentialsValid)
+                while (!Client.CredentialsValid)
                 {
                     Thread.Sleep(5); //Not pretty but works
-                }*/
+                }
 
-                Log.Info("Starting session");
-                synapseSessionToken = "Private.Naku.Id";
+                SapioxManager.log.Msg("Starting session");
+                //synapseSessionToken = "Private.Naku.Id";
 
-                var str = File.ReadAllText(Path.Combine(Computer.ApplicationDataDir, "user.dat"));
+                //var str = File.ReadAllText(Path.Combine(Computer.ApplicationDataDir, "user.dat"));
                 var random = new Random();
                 byte[] bytes = new byte[16];
                 for (int i = 0; i < 16; i++)
@@ -69,22 +69,22 @@ namespace SapioxClient.Events.Patches
                     bytes[i] = (byte)random.Next(0x41, 0x4b);
                 }
 
-                var nonce = str + "#" + Encoding.UTF8.GetString(bytes);
+                var nonce = "Private.test.Id" + "#" + Encoding.UTF8.GetString(bytes);
 
                 hasInjectedByte = false;
-                __instance.Put(str.Length);
-                __instance.Put(Encoding.UTF8.GetBytes(str));
-                __instance.Put(synapseSessionToken.Length);
-                __instance.Put(Encoding.UTF8.GetBytes(synapseSessionToken));
+                __instance.Put(15);
+                __instance.Put(Encoding.UTF8.GetBytes("Private.test.Id"));
+                __instance.Put(15);
+                __instance.Put(Encoding.UTF8.GetBytes("Private.test.Id"));
                 __instance.Put(nonce.Length);
                 __instance.Put(Encoding.UTF8.GetBytes(nonce));
-                Log.Info("==> Body complete");
+                SapioxManager.log.Msg("==> Body complete");
                 PlayerPrefsSl.Set("nickname", nonce);
-                Log.Info("==> Updated NickName to include nonce");
+                SapioxManager.log.Msg("==> Updated NickName to include nonce");
                 return false;
             }
 
-            Log.Info("NetWriter Write: String " + value);
+            SapioxManager.log.Msg("NetWriter Write: String " + value);
 
             return true;
         }
@@ -112,7 +112,7 @@ namespace SapioxClient.Events.Patches
         [HarmonyPrefix]
         public static bool OnClientConnect(string address)
         {
-            Log.Info($"Connecting via Network Client with address {address}");
+            SapioxManager.log.Msg($"Connecting via Network Client with address {address}");
             targetAddress = address;
             return true;
         }
@@ -121,12 +121,12 @@ namespace SapioxClient.Events.Patches
         [HarmonyPrefix]
         public static bool OnClientConnected()
         {
-            Log.Info("Finished Connecting");
+            SapioxManager.log.Msg("Finished Connecting");
             return true;
-        }
+        }*/
 
 
-        [HarmonyPatch(typeof(CentralAuthManager), nameof(CentralAuthManager.Sign))]
+        /*[HarmonyPatch(typeof(CentralAuthManager), nameof(CentralAuthManager.Sign))]
         [HarmonyPrefix]
         public static bool OnSing(ref string __result, string ticket)
         {
@@ -135,34 +135,34 @@ namespace SapioxClient.Events.Patches
                 SapioxManager.log.Msg($"Trying to sign: {ticket}");
                 CentralAuthManager.Authenticated = true;
                 __result = "TICKET";
-                return false;
+                return true;
             }
             catch (Exception e)
             {
                 SapioxManager.log.Msg($"{typeof(CentralAuth).FullName}.{nameof(OnSing)}:\n{e}");
                 return false;
             }
-        }
+        }*/
 
 
         [HarmonyPatch(typeof(CentralAuthManager), nameof(CentralAuthManager.Authentication))]
         [HarmonyPrefix]
         public static bool OnAuth()
         {
-            Log.Info("Faking Central Server Data...");
-            CentralAuthManager.Abort();
+            SapioxManager.log.Msg("Faking Central Server Data...");
+            /*CentralAuthManager.Abort();
             CentralAuthManager.InitAuth();
-            CentralAuthManager.ApiToken = "";
+            CentralAuthManager.ApiToken = "";*/
             CentralAuthManager.Authenticated = true;
             CentralAuthManager.AuthStatusType = AuthStatusType.Success;
-            CentralAuthManager.Nonce = "Sapiox";
+            CentralAuthManager.Nonce = "Northwood";
             CentralAuthManager.PreauthToken = new CentralAuthPreauthToken
             {
                 Country = "PL",
                 Expiration = DateTimeOffset.Now.ToUnixTimeSeconds() + 1000,
-                Flags = Byte.MinValue,
-                Signature = "",
-                UserId = "Naku@Sapiox"
+                Flags = Byte.MaxValue,
+                Signature = "test",
+                UserId = "Zabszk@Northwood"
             };
 
             Handlers.Client.OnCentralAuth();

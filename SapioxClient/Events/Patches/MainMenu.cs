@@ -27,7 +27,7 @@ namespace SapioxClient.Events.Patches
                 //texture.LoadImage(File.ReadAllBytes(Path.Combine(SapioxManager.SapioxDirectory, "logo.png")));
                 //GameObject.Find("Canvas/Logo").GetComponent<RawImage>().texture = texture;
 
-                GameObject.Find("Canvas/Version").GetComponent<Text>().text = "11.1.2 (modded)";
+                GameObject.Find("Canvas/Version").GetComponent<Text>().text = "12.0 (modded)";
                 GameObject.Find("Canvas/PrivateBeta").GetComponent<TMPro.TMP_Text>().text = $"PRIVATE BETA - Sapiox Client (Version {SapioxManager.SapioxVersion})";
 
                 if (Client._redirectCallback != null)
